@@ -53,7 +53,13 @@ app.post('/creatbooking', (req, res) => { //api/bookings
       bookingId: req.body.bookingId,                 //Lägg in datum tid antal gäster kundid
       date: req.body.date,
       time: req.body.time,
-      guests: req.body.guests
+      guests: req.body.guests,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      phone: req.body.phone,
+      guestId: req.body.guestId
+
   });
   newBooking.save().then(booking => res.json(booking));
 }); 

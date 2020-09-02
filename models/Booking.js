@@ -21,7 +21,28 @@ const BookingSchema = new Schema({
     guests: {     
         type: Number,
         required: true
+    },
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    guestId: {
+        type: Number,
+        required: true
     }
+
             //Lägg in datum tid antal gäster, kundid
 });
 
