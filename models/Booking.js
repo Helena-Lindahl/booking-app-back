@@ -5,14 +5,12 @@ const Schema = mongoose.Schema;
 
 const BookingSchema = new Schema({
     bookingId: {     
-        type: Number,
-        required: true
-        
+        type: String,
+        required: true    
     },
     date: {
-        type: Date,
-        default: Date.now
-
+        type: String,
+        required: true
     },
     time: {     
         type: String,
@@ -39,7 +37,7 @@ const BookingSchema = new Schema({
         required: true
     },
     guestId: {
-        type: Number,
+        type: String,
         required: true
     }
 

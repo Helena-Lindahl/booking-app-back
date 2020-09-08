@@ -1,7 +1,6 @@
 const express = require('express'); //Nodejs framework
 const mongoose = require('mongoose'); //MongoDB "framework"
 const bodyParser = require('body-parser'); //take requests get data from the body
-const bookings = require('./routes/api/bookings'); //Skapa en variabel som kopplas till bookings filen
 const Booking = require('./models/Booking');
 
 app = express(),
@@ -22,38 +21,48 @@ mongoose.connect(db)
 .then(() => console.log('MongoDB Connected...'))
 .catch(err => console.log(err));
 
-app.post("/booking", (req, res) => {
-  //req.body.datafältnamn
-  // spara req body i databasen
-})
-
 // @route GET api/bookings
 // @desc Get all bookings
 // @access Public 
 //Home route
-app.get("/", (req, res) => {
-//res.send({ message: "We did it!" });
+app.get("/", async (req, res) => {
+res.send({ time: "We did it! time " + req.body.firstName});
 //const sendBooking = {bookingId: req.body.bookingId}
-const sendBooking = {bookingId: "5"} //Används denna
-res.send({ booking: sendBooking });
+
+// res.send({ 
+// Skapa en listvariabel här som heter sendBooking eller räcker det med den i "res.send"?
+//  const sendBooking = await {    
+//  bookingId: req.body.bookingId, 
+//   date: req.body.date, 
+//   time: req.body.time, 
+//   guests: req.body.guests, 
+//   firstName: req.body.firstName, 
+//   lastName: req.body.lastName, 
+//   email: req.body.email,
+//   phone: req.body.phone,
+//   guestId: req.body.guestId
+// }});
+// res.send({ booking: sendBooking });
+
 });
 //Alt Home route 
-app.get('/', (req, res) => { //Hur får jag fram denna i browsern? 
-  const sendBooking = {bookingId: "5"}
-  Booking.find()
-  .sort({ date: -1 })
-  .then(bookings => res.json(bookings))
-}); 
+// app.get('/', (req, res) => { //Hur får jag fram denna i browsern? 
+//   const sendBooking = {bookingId: "5"}
+//   Booking.find()
+//   .sort({ date: -1 })
+//   .then(bookings => res.json(bookings))
+// }); 
 
 // @route POST api/bookings
 // @desc Create a booking
 // @access Public 
-app.post('/creatbooking', (req, res) => { //api/bookings
-  const newBooking = new Booking({
-      bookingId: req.body.bookingId,                 //Lägg in datum tid antal gäster kundid
-      date: req.body.date,
-      time: req.body.time,
-      guests: req.body.guests,
+app.post('/', async (req, res) => { 
+  const newBooking = await new Booking({
+    
+      // bookingId: req.body.bookingId,                
+      // date: req.body.date,
+      // time: req.body.time,
+      // guests: req.body.guests,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
@@ -61,7 +70,8 @@ app.post('/creatbooking', (req, res) => { //api/bookings
       guestId: req.body.guestId
 
   });
-  newBooking.save().then(booking => res.json(booking));
+   newBooking.save()
+   res.send(newBooking);
 }); 
 
 // @route DELETE api/bookings/:id
@@ -82,4 +92,4 @@ app.listen(port, () => console.log("Backend server live on " + port));
 
 
 
-module.exports = app;   //Behövs denna? 
+module.exports = app;  
