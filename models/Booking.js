@@ -1,17 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-//Create Schema
+//Create Booking Schema
 
 const BookingSchema = new Schema({
     bookingId: {     
-        type: Number,
+        type: String,
         required: true
-        
     },
     date: {
-        type: Date,
-        default: Date.now
+        type: String,
+        required: true
 
     },
     time: {     
@@ -21,12 +20,37 @@ const BookingSchema = new Schema({
     guests: {     
         type: Number,
         required: true
+    },
+    firstName: {     
+        type: String,
+        required: true
+        
+    },
+    lastName: {
+        type: String,
+        required: true
+
+    },
+    email: {     
+        type: String,
+        required: true
+    },
+    phone: {     
+        type: String,
+        required: true
+    },
+    guestId: {     
+        type: String,
+        required: true
     }
             //Lägg in datum tid antal gäster, kundid
 });
 
-module.exports = Booking = mongoose.model('booking', BookingSchema);
 
+
+
+module.exports = Booking = mongoose.model('booking', BookingSchema);
+// module.exports = Date = mongoose.model('date', DateSchema);
 
 //bookingId
 //date
