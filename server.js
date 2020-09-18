@@ -49,14 +49,16 @@ mongoose
 // @access Public
 //Home route
 app.get("/", async (req, res) => {
+  
   //res.send({ message: "We did it!" });
   //const sendBooking = {bookingId: req.body.bookingId}
-
+ 
   // res.send(Booking.find());
   const sendBooking = await Booking.find();
   // console.log(res.data)
   // console.log(req.body);
   res.send(sendBooking);
+  
 });
 //Alt Home route
 // app.get('/', (req, res) => { //Hur får jag fram denna i browsern?
